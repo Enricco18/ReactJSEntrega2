@@ -4,13 +4,21 @@
   box-sizing: border-box;
 }
 
+html{
+  height: 100%;
+}
+
 body {
+  width: 100%;
+  height: 100%;
+  background-color: #d3d3d3;
   font-size: 14px;
 }
 
 div {
   width: 100%;
   margin: 20px;
+  height: 100%;
 }
 
 div li {
@@ -33,7 +41,24 @@ button {
   font-size: 14px;
 }
 
+input{
+  margin-top: 15px;
+}
+
 div li button {
   margin: 0 15px;
   background: #ca4949;
+}
+
+.container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+ul{
+  border-radius: 5px;
+  padding: 5px;
+  background-color: #9B51B4;
 }
