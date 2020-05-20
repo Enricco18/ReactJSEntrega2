@@ -4,32 +4,26 @@ import "./styles.css";
 
 function App() {
   const [reposList, setRepos] = useState([]);
-  const [inputTxt, updateInput] = useState("");
 
   useEffect(()=>{
     api.get("repositories").then(response=>{
       setRepos(response.data)
     })
   },[])
-  
-  function handleTyping(event){
-    updateInput(event.target.value)
-  }
 
   async function handleAddRepository() {
     const response = await api.post(`repositories`,{
-      "title": inputTxt, 
+      "title": "Desafio React Native", 
       "url": "http://github.com/...", 
       "techs": ["Node.js", "..."]
     })
-    setRepos(response.data)
-    updateInput("");
+    setRepos([...reposList,response.data])
     
   }
 
   async function handleRemoveRepository(id) {
-    const response = await api.delete(`repositories/${id}`)
-    setRepos(response.data)
+    await api.delete(`repositories/${id}`);
+    setRepos(reposList.filter((item)=>{item.id ==id}));
   }
 
   return (
@@ -50,7 +44,6 @@ function App() {
         )})
       }
       </ul>
-      <input type="text" value={inputTxt} onChange={handleTyping}></input>
       <button onClick={handleAddRepository}>Adicionar</button>
     </div>
   );
